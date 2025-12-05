@@ -12,16 +12,17 @@ st.header("Upload your data file here (CSV): ")
 file = st.file_uploader("Upload your file here", type=["csv"])
 
 if file is not None:
+    st.markdown("#### File is uploaded succesfully!")
     data = pd.read_csv(file)
     data=data.fillna(0)
     st.subheader("Preview of Dataset")
     st.dataframe(data.head())
 
     # Select annotation column
-    annotation = st.selectbox("Select a column for distribution", data.columns)
+    annotation = st.selectbox("Select a the annotation for distribution", data.columns)
 
     # Select irrelevant columns (DO NOT remove annotation)
-    st.subheader("Select irrelevant columns (except annotation)")
+    st.subheader("Select irrelevant columns (except annotation) of your dataset")
     irrelevant = st.multiselect(
         "Choose columns to remove:",
         [col for col in data.columns if col != annotation]
@@ -64,7 +65,7 @@ if file is not None:
 
     # ------------------------------ HISTOGRAM ------------------------------
     if show_hist:
-        st.markdown("### 📈 Statistical Feature Distribution")
+        st.markdown("### 📈 Class-wise Feature Distribution")
         numeric_cols = data.select_dtypes(include=["int64", "float64"]).columns
 
         if len(numeric_cols) == 0:
