@@ -12,13 +12,14 @@ st.header("Upload your data file here (CSV): ")
 file = st.file_uploader("Upload your file here", type=["csv"])
 
 if file is not None:
-    st.markdown("#### File is uploaded succesfully!")
+    st.success("File loaded successfully!")
     data = pd.read_csv(file)
     data=data.fillna(0)
     st.subheader("Preview of Dataset")
     st.dataframe(data.head())
 
     # Select annotation column
+    st.subheader("Select annotation/target of your dataset")
     annotation = st.selectbox("Select a the annotation for distribution", data.columns)
 
     # Select irrelevant columns (DO NOT remove annotation)
