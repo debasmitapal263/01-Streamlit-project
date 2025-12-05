@@ -20,7 +20,7 @@ if file is not None:
 
     # Select annotation column
     st.subheader("Select annotation/target of your dataset")
-    annotation = st.selectbox("Select a the annotation for distribution", data.columns)
+    annotation = st.selectbox("Select the annotation", data.columns)
 
     # Select irrelevant columns (DO NOT remove annotation)
     st.subheader("Select irrelevant columns (except annotation) of your dataset")
